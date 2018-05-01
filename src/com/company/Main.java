@@ -7,28 +7,33 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
         String textLine;
-        int counter = 0;
+        List<String> validArgs = new LinkedList<>();
+        System.out.println("To exit press Ctrl+D");
+         boolean overlap = false;
         for(String i:args){
-            if (i.isEmpty()){
-                counter += 1;
+            if (!i.isEmpty() && !i.equals(" ") ){
+                validArgs.add(i);
             }
         }
 
-        if (counter == args.length){
-            System.out.println("there is no arguments to work with");
+        if (validArgs.size() == 0){
+            System.out.println("there is no arguments to work with. Bye!");
             return;
         }
 
         while (scanner.hasNextLine()) {
-            textLine = scanner.nextLine();
-            for(String i:args) {
-                if (i.isEmpty() || i.equals(" ")){
-                    continue;
-                }
-                if (textLine.toLowerCase().contains(i.toLowerCase())) {
-                    System.out.print(textLine + "\n");
+            textLine = scanner.nextLine().trim();
+            System.out.print("Overlapping arguments: ");
+            for(String vArgs:validArgs) {
+                if (textLine.toLowerCase().contains(vArgs.toLowerCase().trim())) {
+                    overlap = true;
+                    System.out.print(vArgs+"| ");
                 }
             }
+            if(overlap){
+                System.out.println("\n"+textLine);
+            }else System.out.println("none");
+
         }
     }
 }
