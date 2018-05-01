@@ -5,11 +5,9 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Scanner scanner = new Scanner(System.in);
-        String textLine,trimmedArg;
-        List<String> validArgs = new LinkedList<>();
         System.out.println("To exit press Ctrl+D");
-         boolean overlap = false;
+        String trimmedArg;
+        List<String> validArgs = new LinkedList<>();
         for(String unvalidatedArgs:args){
             trimmedArg = unvalidatedArgs.trim();
             if (!trimmedArg.isEmpty()){
@@ -22,17 +20,16 @@ public class Main {
             return;
         }
 
+        Scanner scanner = new Scanner(System.in);
+        String textLine;
         while (scanner.hasNextLine()) {
             textLine = scanner.nextLine();
             for(String vArgs:validArgs) {
                 if (textLine.toLowerCase().contains(vArgs.toLowerCase())) {
-                    overlap = true;
+                    System.out.println(textLine);
+                    break;
                 }
             }
-            if(overlap){
-                System.out.println(textLine);
-            }
-
         }
     }
 }
