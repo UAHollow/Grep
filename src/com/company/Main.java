@@ -6,13 +6,14 @@ public class Main {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
-        String textLine;
+        String textLine,trimmedArg;
         List<String> validArgs = new LinkedList<>();
         System.out.println("To exit press Ctrl+D");
          boolean overlap = false;
         for(String unvalidatedArgs:args){
-            if (!unvalidatedArgs.isEmpty() && !unvalidatedArgs.equals(" ") ){
-                validArgs.add(unvalidatedArgs);
+            trimmedArg = unvalidatedArgs.trim();
+            if (!trimmedArg.isEmpty()){
+                validArgs.add(trimmedArg);
             }
         }
 
@@ -22,14 +23,14 @@ public class Main {
         }
 
         while (scanner.hasNextLine()) {
-            textLine = scanner.nextLine().trim();
+            textLine = scanner.nextLine();
             for(String vArgs:validArgs) {
-                if (textLine.toLowerCase().contains(vArgs.toLowerCase().trim())) {
+                if (textLine.toLowerCase().contains(vArgs.toLowerCase())) {
                     overlap = true;
                 }
             }
             if(overlap){
-                System.out.println("\n"+textLine);
+                System.out.println(textLine);
             }
 
         }
