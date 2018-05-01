@@ -10,9 +10,9 @@ public class Main {
         List<String> validArgs = new LinkedList<>();
         System.out.println("To exit press Ctrl+D");
          boolean overlap = false;
-        for(String i:args){
-            if (!i.isEmpty() && !i.equals(" ") ){
-                validArgs.add(i);
+        for(String unvalidatedArgs:args){
+            if (!unvalidatedArgs.isEmpty() && !unvalidatedArgs.equals(" ") ){
+                validArgs.add(unvalidatedArgs);
             }
         }
 
@@ -23,16 +23,14 @@ public class Main {
 
         while (scanner.hasNextLine()) {
             textLine = scanner.nextLine().trim();
-            System.out.print("Overlapping arguments: ");
             for(String vArgs:validArgs) {
                 if (textLine.toLowerCase().contains(vArgs.toLowerCase().trim())) {
                     overlap = true;
-                    System.out.print(vArgs+"| ");
                 }
             }
             if(overlap){
                 System.out.println("\n"+textLine);
-            }else System.out.println("none");
+            }
 
         }
     }
